@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { PROJECTS, DOORS } from '../data/portfolioData';
+import { PROJECTS, DOORS, GITHUB_SYNCED_AT } from '../data/portfolioData';
 import { Project } from '../types';
 import { DeviceMockup } from './DeviceMockup';
 import { useTheme } from '../context/ThemeContext';
 import { ExternalLink, ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, CheckCircle2 } from 'lucide-react';
 import { GithubIcon } from './Icons';
+import { TiltCard } from './ui/tilt-card';
+import { ProjectLinksDirectory } from './ProjectLinksDirectory';
 
 interface StackedProjectsDeckProps {
   selectedDoorId: string | null;
   onResetDoor: () => void;
+  onSelectCategory: (category: string) => void;
 }
 
 export const StackedProjectsDeck: React.FC<StackedProjectsDeckProps> = ({
   selectedDoorId,
   onResetDoor,
+  onSelectCategory,
 }) => {
   const { playClickSound } = useTheme();
 
@@ -73,11 +77,13 @@ export const StackedProjectsDeck: React.FC<StackedProjectsDeckProps> = ({
 
             <div>
               <span className="text-[11px] font-mono uppercase tracking-widest text-zinc-400 font-bold block">
-                {activeDoor ? `Domain: ${activeDoor.title}` : 'Featured Showcase'}
+                {activeDoor ? `Domain: ${activeDoor.title}` : 'GitHub & selected case studies'}
               </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold font-display text-white">
-                {activeDoor ? activeDoor.tag : 'Production Projects & Architectures'}
+                {activeDoor ? activeDoor.tag : selectedDoorId === 'other' ? 'More from GitHub' : 'Projects & Experiments'}
               </h2>
+              <p className="mt-2 text-xs text-zinc-400">{PROJECTS.length} public repositories · Synced {new Date(GITHUB_SYNCED_AT).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })} · <a href="https://github.com/workofcharan?tab=repositories" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">View GitHub</a></p>
+              <a href="#project-links" className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2 text-xs font-semibold text-white hover:bg-white/10">View all project links <ExternalLink size={13} /></a>
             </div>
           </div>
 
@@ -103,11 +109,7 @@ export const StackedProjectsDeck: React.FC<StackedProjectsDeckProps> = ({
                   key={door.id}
                   onClick={() => {
                     playClickSound(650);
-                    onResetDoor();
-                    setTimeout(() => {
-                      const btn = document.getElementById(`door-tab-${door.id}`);
-                      if (btn) btn.click();
-                    }, 50);
+                    onSelectCategory(door.id);
                   }}
                   id={`door-tab-${door.id}`}
                   className={`px-3.5 py-1.5 rounded-full text-xs font-mono whitespace-nowrap transition-all ${
@@ -120,6 +122,7 @@ export const StackedProjectsDeck: React.FC<StackedProjectsDeckProps> = ({
                 </button>
               );
             })}
+            <button onClick={() => onSelectCategory('other')} className={`px-3.5 py-1.5 rounded-full text-xs font-mono whitespace-nowrap ${selectedDoorId === 'other' ? 'bg-white text-black' : 'bg-zinc-950 border border-white/15 text-zinc-400 hover:text-white'}`}>More on GitHub ({PROJECTS.filter(project => project.category === 'other').length})</button>
           </div>
 
         </div>
@@ -147,7 +150,7 @@ export const StackedProjectsDeck: React.FC<StackedProjectsDeckProps> = ({
           </div>
 
           {/* Main Elevated Card View */}
-          <div className="relative rounded-3xl bg-zinc-950 border border-white/15 shadow-[0_30px_70px_rgba(0,0,0,0.9)] backdrop-blur-xl p-6 sm:p-8 lg:p-10">
+          <div className="relative rounded-3xl bg-zinc-950 border border-white/15 shadow-[0_30px_70px_rgba(0, 0, 0,0.9)] backdrop-blur-xl p-6 sm:p-8 lg:p-10">
             
             <AnimatePresence mode="wait">
               <motion.div
@@ -192,7 +195,7 @@ export const StackedProjectsDeck: React.FC<StackedProjectsDeckProps> = ({
                   {/* Engineering Highlights */}
                   <div className="space-y-2 pt-1">
                     <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 font-bold block">
-                      Key Technical Innovations & Implementation:
+                      {currentProject.previewType === 'repository' ? 'Repository details:' : 'Key Technical Innovations & Implementation:'}
                     </span>
                     <ul className="space-y-2">
                       {currentProject.highlights.map((h, i) => (
@@ -207,7 +210,7 @@ export const StackedProjectsDeck: React.FC<StackedProjectsDeckProps> = ({
                   {/* Tech Stack Badges */}
                   <div className="pt-2">
                     <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 font-bold block mb-2">
-                      Verified Technology Stack:
+                      {currentProject.previewType === 'repository' ? 'Languages & topics:' : 'Technology Stack:'}
                     </span>
                     <div className="flex flex-wrap gap-2">
                       {currentProject.techStack.map((tech) => (
@@ -230,7 +233,7 @@ export const StackedProjectsDeck: React.FC<StackedProjectsDeckProps> = ({
                         rel="noopener noreferrer"
                         className="group inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-white hover:bg-zinc-200 text-black font-bold text-xs sm:text-sm tracking-wide shadow-lg transition-all"
                       >
-                        <span>Open Live Deployment</span>
+                        <span>Visit Live Site</span>
                         <ExternalLink size={15} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                       </a>
                     )}
@@ -242,7 +245,7 @@ export const StackedProjectsDeck: React.FC<StackedProjectsDeckProps> = ({
                       className="group inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-zinc-900 hover:bg-zinc-800 border border-white/20 text-white font-semibold text-xs sm:text-sm transition-all"
                     >
                       <GithubIcon size={15} />
-                      <span>Inspect Repository</span>
+                      <span>View on GitHub</span>
                       <ExternalLink size={13} className="text-zinc-400 group-hover:text-white" />
                     </a>
                   </div>
@@ -251,7 +254,9 @@ export const StackedProjectsDeck: React.FC<StackedProjectsDeckProps> = ({
 
                 {/* Right Column: Device Screen Preview Mockup */}
                 <div className="lg:col-span-5 flex justify-center">
+                  <TiltCard className="w-full">
                   <DeviceMockup project={currentProject} />
+                  </TiltCard>
                 </div>
 
               </motion.div>
@@ -273,6 +278,8 @@ export const StackedProjectsDeck: React.FC<StackedProjectsDeckProps> = ({
                 {filteredProjects.map((_, i) => (
                   <button
                     key={i}
+                    aria-label={`View project ${filteredProjects[i].title}`}
+                    aria-pressed={i === activeIndex}
                     onClick={() => handleSelectCard(i)}
                     className={`w-2.5 h-2.5 rounded-full transition-all ${
                       i === activeIndex ? 'bg-white w-6' : 'bg-zinc-800 hover:bg-zinc-700'
@@ -296,6 +303,7 @@ export const StackedProjectsDeck: React.FC<StackedProjectsDeckProps> = ({
 
         </div>
 
+        <ProjectLinksDirectory />
       </div>
     </section>
   );

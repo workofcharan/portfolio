@@ -1,0 +1,131 @@
+{
+  "checkedAt": "2026-11-17T14:35:31.632Z",
+  "results": [
+    {
+      "name": "kitchen-bots",
+      "url": null,
+      "status": null,
+      "working": false,
+      "reason": "No public deployment listed"
+    },
+    {
+      "name": "sampradayaevents",
+      "url": "https://sampradayaevents.vercel.app",
+      "finalUrl": "https://sampradayaevents.vercel.app/",
+      "status": 200,
+      "working": true,
+      "title": "Sampradaya Events | Luxury Wedding & Event Curators Hyderabad"
+    },
+    {
+      "name": "FINCORE",
+      "url": "https://fincoreconsultancy.vercel.app",
+      "finalUrl": "https://fincoreconsultancy.vercel.app/",
+      "status": 200,
+      "working": true,
+      "title": "FINCORE CONSULTANCY SERVICES | Tax, Company Registration, Accounting &amp; Compliance in India"
+    },
+    {
+      "name": "portfolio",
+      "url": "https://charanpf.vercel.app",
+      "finalUrl": "https://charanpf.vercel.app/",
+      "status": 200,
+      "working": true,
+      "title": "Rekapalli Sri Charan — Software Developer & Tech Enthusiast"
+    },
+    {
+      "name": "yaadri2",
+      "url": "https://yaadri2.vercel.app",
+      "finalUrl": "https://yaadri2.vercel.app/",
+      "status": 200,
+      "working": true,
+      "title": "YAADRI — Your Personal AI Memory Companion"
+    },
+    {
+      "name": "review",
+      "url": "https://revpulse1.vercel.app",
+      "finalUrl": "https://revpulse1.vercel.app/",
+      "status": 200,
+      "working": true,
+      "title": "💻 Ebin tech Command Center"
+    },
+    {
+      "name": "crave-plus",
+      "url": "https://crave-plus.vercel.app",
+      "finalUrl": "https://crave-plus.vercel.app/",
+      "status": 200,
+      "working": true,
+      "title": "CravePulse | Discover Famous Dishes & What to Eat Near You"
+    },
+    {
+      "name": "credit-ledger",
+      "url": "https://credit-ledger-henna.vercel.app",
+      "finalUrl": "https://credit-ledger-henna.vercel.app/",
+      "status": 200,
+      "working": true,
+      "title": "Explainable Credit Ledger — AI Fraud Detection &amp; Credit Scoring"
+    },
+    {
+      "name": "workofcharan",
+      "url": null,
+      "status": null,
+      "working": false,
+      "reason": "No public deployment listed"
+    },
+    {
+      "name": "ce",
+      "url": "https://ce-blue.vercel.app",
+      "finalUrl": "https://ce-blue.vercel.app/",
+      "status": 404,
+      "working": false,
+      "title": null
+    },
+    {
+      "name": "rural-advisor",
+      "url": "https://rural-advisor.vercel.app",
+      "finalUrl": "https://rural-advisor.vercel.app/",
+      "status": 200,
+      "working": true,
+      "title": "Rural Business Advisory &amp; Financial Structuring Assistant"
+    },
+    {
+      "name": "np",
+      "url": "https://autohealarl.vercel.app",
+      "finalUrl": "https://autohealarl.vercel.app/dashboard/",
+      "status": 200,
+      "working": true,
+      "title": "AutoHeal HUD | Autonomous System Health Console"
+    },
+    {
+      "name": "fdai",
+      "url": "https://fdai-five.vercel.app",
+      "finalUrl": "https://fdai-five.vercel.app/",
+      "status": 404,
+      "working": false,
+      "title": null
+    },
+    {
+      "name": "DietDost",
+      "url": "https://dietdost.vercel.app/",
+      "finalUrl": "https://dietdost.vercel.app/",
+      "status": 200,
+      "working": true,
+      "title": "DietDost - AI-Powered Indian Food Calorie &amp; Nutrition Tracker"
+    },
+    {
+      "name": "emw",
+      "url": "https://emw-three.vercel.app",
+      "finalUrl": "https://emw-three.vercel.app/",
+      "status": 200,
+      "working": true,
+      "title": "EventForge — Event Management"
+    },
+    {
+      "name": "crop-recommendation-system",
+      "url": "https://cropmindcrs.vercel.app",
+      "finalUrl": "https://cropmindcrs.vercel.app/login",
+      "status": 200,
+      "working": true,
+      "title": "Login - CropMind AI Smart Farming"
+    }
+  ]
+}

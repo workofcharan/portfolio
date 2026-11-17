@@ -1,237 +1,63 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Sparkles, MapPin, GraduationCap, ChevronDown } from 'lucide-react';
-import { PERSONAL_INFO } from '../data/portfolioData';
-import { useTheme } from '../context/ThemeContext';
-import { BlurRevealText } from './BlurRevealText';
+﻿import React from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { ArrowDown, ArrowUpRight, MapPin, Code2, Sparkles } from 'lucide-react';
+import { GithubIcon as Github, LinkedinIcon as Linkedin } from './Icons';
+import { PERSONAL_INFO, PROJECTS } from '../data/portfolioData';
+import { TiltCard } from './ui/tilt-card';
 
 export const Hero: React.FC = () => {
-  const { playClickSound } = useTheme();
-  const [roleIndex, setRoleIndex] = useState(0);
-
-  // Auto-flip role card every 3.2s
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setRoleIndex((prev) => (prev + 1) % PERSONAL_INFO.roles.length);
-    }, 3200);
-    return () => clearInterval(timer);
-  }, []);
-
-  const handleCardClick = () => {
-    playClickSound(700);
-    setRoleIndex((prev) => (prev + 1) % PERSONAL_INFO.roles.length);
+  const reducedMotion = useReducedMotion();
+  const rise = {
+    hidden: { opacity: reducedMotion ? 1 : 0, y: reducedMotion ? 0 : 24 },
+    visible: { opacity: 1, y: 0, transition: { duration: reducedMotion ? 0 : 0.6, ease: 'easeOut' as const } },
   };
-
-  const handleScrollTo = (id: string) => {
-    playClickSound(850);
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
-    <section id="home" className="relative min-h-screen pt-28 pb-16 flex flex-col justify-between overflow-hidden bg-black">
-      
-      {/* Background ambient lighting - Pure white subtle glow */}
-      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/5 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-zinc-500/5 rounded-full blur-[150px] pointer-events-none" />
+    <motion.section id="home" className="portfolio-hero hero-redesign relative overflow-hidden"
+      initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: reducedMotion ? 0 : 0.09 } } }}>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <motion.div variants={rise} className="flex flex-wrap items-center justify-between gap-4 mb-12 text-xs text-zinc-400">
+          <span className="hero-availability inline-flex items-center gap-2.5 rounded-full border border-white/15 px-3 py-2"><span className="size-1.5 rounded-full bg-lime-300" />Open to opportunities</span>
+          <span className="inline-flex items-center gap-2"><MapPin size={13} />Hyderabad, India</span>
+        </motion.div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1 flex flex-col justify-center">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center py-8">
-          
-          {/* Left Column: Heading, Spiral Flip Card, CTAs */}
-          <div className="lg:col-span-7 flex flex-col items-start z-10">
-            
-            {/* Status Pill Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-zinc-950 border border-white/15 text-xs font-mono text-zinc-300 shadow-sm mb-6"
-            >
-              <span className="w-2 h-2 rounded-full bg-white animate-ping" />
-              <span className="w-2 h-2 rounded-full bg-white -ml-4" />
-              <span>Available for Software Engineering Roles & Projects</span>
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <div className="lg:col-span-7">
+            <motion.p variants={rise} className="text-base sm:text-lg text-zinc-300 mb-5">Hi, I&apos;m <span className="text-white font-semibold">Sri Charan.</span><span className="hero-greeting-mark text-lime-300 ml-2" aria-hidden="true">&#10038;</span></motion.p>
+            <h1 className="hero-display hero-heading">
+              <span className="block overflow-hidden"><motion.span variants={rise} className="block">Ideas into</motion.span></span>
+              <span className="block overflow-hidden pb-3"><motion.span variants={rise} className="hero-display-serif block">experiences.</motion.span></span>
+            </h1>
+            <motion.p variants={rise} className="hero-description mt-5 max-w-lg text-base sm:text-lg leading-relaxed">A software developer bringing thoughtful interfaces and intelligent systems to life. I build for the web, explore AI, and care about the details that make software feel right.</motion.p>
+            <motion.div variants={rise} className="hero-actions mt-8 flex flex-wrap items-center gap-3">
+              <a href="#projects" className="hero-primary inline-flex items-center justify-between gap-7 rounded-full px-6 py-4 text-sm font-semibold">See what I build <ArrowUpRight size={19} /></a>
+              <a href={`mailto:${PERSONAL_INFO.email}`} className="inline-flex items-center gap-5 rounded-full border border-white/20 px-6 py-4 text-sm font-medium text-white hover:bg-white/5">Let&apos;s talk <ArrowUpRight size={17} /></a>
             </motion.div>
-
-            {/* Main Greeting */}
-            <div className="space-y-1">
-              <BlurRevealText
-                text="Hi, I'm Sri Charan."
-                as="h1"
-                className="text-4xl sm:text-6xl lg:text-7xl font-extrabold font-display tracking-tight text-white leading-[1.08]"
-              />
-              <p className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-zinc-400 font-display">
-                I am a
-              </p>
-            </div>
-
-            {/* Signature Spiral-Ring Desk Calendar / Tear-Off Flip Card */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              onClick={handleCardClick}
-              className="mt-6 mb-8 w-full max-w-lg cursor-pointer group select-none"
-              title="Click to flip role"
-            >
-              {/* Spiral Chrome Rings on Top */}
-              <div className="flex justify-between px-6 -mb-3 relative z-20">
-                {[...Array(10)].map((_, i) => (
-                  <div key={i} className="flex flex-col items-center">
-                    {/* Ring loop */}
-                    <div className="w-2.5 h-6 rounded-full bg-gradient-to-r from-zinc-400 via-white to-zinc-500 shadow-md border border-white/40 transform -rotate-3 group-hover:rotate-0 transition-transform" />
-                    {/* Hole in paper */}
-                    <div className="w-2 h-2 rounded-full bg-black -mt-1 shadow-inner" />
-                  </div>
-                ))}
-              </div>
-
-              {/* Physical Desk Calendar Card */}
-              <div className="relative rounded-2xl bg-white text-black pt-8 pb-6 px-6 sm:px-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] border border-zinc-200 group-hover:border-black transition-all duration-300">
-                
-                {/* Subtle paper line texture */}
-                <div className="absolute inset-0 rounded-2xl bg-[linear-gradient(to_bottom,transparent_95%,rgba(0,0,0,0.03)_100%)] bg-[length:100%_24px] pointer-events-none" />
-
-                {/* Flip role text container with AnimatePresence */}
-                <div className="h-16 sm:h-20 flex items-center overflow-hidden">
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={roleIndex}
-                      initial={{ y: 25, opacity: 0, rotateX: -20 }}
-                      animate={{ y: 0, opacity: 1, rotateX: 0 }}
-                      exit={{ y: -25, opacity: 0, rotateX: 20 }}
-                      transition={{ duration: 0.35, ease: 'easeOut' }}
-                      className="w-full"
-                    >
-                      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-display tracking-tight text-black">
-                        {PERSONAL_INFO.roles[roleIndex]}
-                      </h2>
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
-
-                {/* Bottom card footer: Pagination & helper */}
-                <div className="pt-3 border-t border-zinc-200 flex items-center justify-between text-xs font-mono text-zinc-600">
-                  <span className="flex items-center gap-1.5 text-[11px] font-semibold text-zinc-800">
-                    <Sparkles size={12} className="text-black" />
-                    Click to flip
-                  </span>
-                  <span className="font-bold px-2 py-0.5 rounded bg-zinc-100 text-black border border-zinc-300">
-                    0{roleIndex + 1} / 0{PERSONAL_INFO.roles.length}
-                  </span>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Call To Action Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-wrap items-center gap-4"
-            >
-              {/* Primary Pill Button with hover arrow slide */}
-              <button
-                onClick={() => handleScrollTo('doors')}
-                className="group relative inline-flex items-center gap-3 px-7 py-4 rounded-full bg-white text-black font-bold text-sm tracking-wide shadow-xl hover:bg-zinc-200 transition-all duration-200"
-              >
-                <span>Enter The Doors</span>
-                <span className="w-7 h-7 rounded-full bg-black text-white group-hover:bg-zinc-800 flex items-center justify-center transition-colors">
-                  <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
-                </span>
-              </button>
-
-              {/* Secondary Ghost Button */}
-              <button
-                onClick={() => handleScrollTo('projects')}
-                className="px-6 py-4 rounded-full border border-white/20 hover:border-white bg-black hover:bg-white/10 text-white font-medium text-sm transition-all duration-200"
-              >
-                See All Projects
-              </button>
-
-              {/* Contact Button */}
-              <button
-                onClick={() => handleScrollTo('contact')}
-                className="px-6 py-4 rounded-full text-zinc-400 hover:text-white text-sm font-mono transition-colors"
-              >
-                Get in touch →
-              </button>
-            </motion.div>
-
-          </div>
-
-          {/* Right Column: Editorial Portrait Card & Badge */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-end z-10">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="relative w-full max-w-sm sm:max-w-md group"
-            >
-              {/* Subtle monochrome border glow */}
-              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-white/20 via-zinc-400/20 to-white/20 blur-lg opacity-40 group-hover:opacity-80 transition-opacity" />
-
-              {/* Card Container */}
-              <div className="relative rounded-3xl overflow-hidden bg-zinc-950 border border-white/15 shadow-2xl">
-                
-                {/* Portrait Image */}
-                <div className="relative aspect-[3/4] overflow-hidden bg-zinc-950">
-                  <img
-                    src="/charan-portrait.jpg"
-                    alt="Rekapalli Sri Charan"
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-all duration-700 ease-out"
-                  />
-                  
-                  {/* Subtle luxury vignette blend */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-75 pointer-events-none" />
-
-                  {/* Floating Ability Card Badge matching Instagram reel */}
-                  <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-black/90 backdrop-blur-md border border-white/15 shadow-2xl group-hover:border-white/30 transition-colors">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-300 font-bold flex items-center gap-1.5">
-                        <GraduationCap size={13} className="text-white" />
-                        Loyola Academy '26
-                      </span>
-                      <span className="text-[10px] font-mono text-zinc-400">
-                        B.Sc CSE • Sem V
-                      </span>
-                    </div>
-
-                    <div className="flex items-center justify-between text-xs font-mono text-zinc-400 pt-2 border-t border-white/10">
-                      <span className="flex items-center gap-1 text-zinc-300">
-                        <MapPin size={12} className="text-white" />
-                        Secunderabad, IN
-                      </span>
-                      <span className="text-white font-bold flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-white" />
-                        SIH '26 Finalist
-                      </span>
-                    </div>
-                  </div>
-
-                </div>
-
-              </div>
-
+            <motion.div variants={rise} className="mt-8 flex flex-wrap items-center gap-5">
+              <span className="text-xs text-zinc-500">Find me elsewhere</span>
+              <a href={PERSONAL_INFO.github} target="_blank" rel="noreferrer" className="hero-social inline-flex items-center gap-2 text-xs text-zinc-300 hover:text-white"><Github size={15} />GitHub <ArrowUpRight size={12} /></a>
+              <a href={PERSONAL_INFO.linkedin} target="_blank" rel="noreferrer" className="hero-social inline-flex items-center gap-2 text-xs text-zinc-300 hover:text-white"><Linkedin size={15} />LinkedIn <ArrowUpRight size={12} /></a>
             </motion.div>
           </div>
 
+          <motion.figure variants={rise} className="hero-photo-composition lg:col-span-5 relative m-0">
+            <div className="hero-photo-outline absolute inset-0 rounded-[2rem] border border-white/15 pointer-events-none" aria-hidden="true" />
+            <TiltCard className="relative overflow-hidden rounded-[2rem] border border-white/15 bg-zinc-950">
+              <img src="/charan-portrait.jpg" alt="Sri Charan, software developer based in Hyderabad" className="hero-photo w-full object-cover" fetchPriority="high" width={935} height={1024} />
+            </TiltCard>
+            <div className="hero-photo-index absolute top-5 left-5 flex items-center gap-2 rounded-full px-3 py-2 text-[10px] font-mono"><Code2 size={12} />DEVELOPER &amp; CURIOUS HUMAN</div>
+            <figcaption className="hero-photo-note relative mx-4 -mt-8 sm:mx-6 rounded-2xl border border-white/15 bg-zinc-950 p-4 sm:p-5 flex items-center justify-between gap-4">
+              <div><span className="block text-sm font-semibold text-white">Always learning. Always building.</span><span className="block mt-1.5 text-xs text-zinc-400">Computer Science &amp; Engineering, Loyola Academy</span></div>
+              <Sparkles size={24} className="shrink-0 text-lime-300" aria-hidden="true" />
+            </figcaption>
+          </motion.figure>
         </div>
-      </div>
 
-      {/* Bottom Scroll Indicator matching Instagram Reel */}
-      <div className="w-full flex justify-center pb-4 z-10">
-        <button
-          onClick={() => handleScrollTo('doors')}
-          className="flex flex-col items-center gap-1 text-zinc-500 hover:text-white transition-colors group"
-        >
-          <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 group-hover:text-white">
-            Scroll to discover
-          </span>
-          <ChevronDown size={16} className="animate-bounce text-zinc-400 group-hover:text-white" />
-        </button>
+        <motion.div variants={rise} className="hero-footnotes mt-14 lg:mt-16 grid sm:grid-cols-3 gap-6 sm:gap-8 border-t border-white/15 py-7">
+          <div className="flex items-center gap-4"><span className="hero-project-count text-3xl font-display text-white tabular-nums">{String(PROJECTS.length).padStart(2, '0')}<span className="text-lime-300">+</span></span><div><span className="block text-xs font-medium text-white">Projects &amp; experiments</span><span className="block mt-1 text-xs text-zinc-500">Ideas brought to life</span></div></div>
+          <div className="sm:border-l sm:border-white/15 sm:pl-8"><span className="block text-xs font-medium text-white">Full-stack meets AI</span><span className="block mt-2 text-xs text-zinc-400">React / TypeScript / Python</span></div>
+          <a href="#projects" className="hero-featured-link sm:border-l sm:border-white/15 sm:pl-8 flex items-center justify-between gap-4 group"><div><span className="block text-[10px] font-mono text-zinc-500 mb-1.5">EXPLORE SELECTED WORK</span><span className="block text-xs font-medium text-white">From first idea to final detail</span></div><span className="size-9 shrink-0 rounded-full border border-white/20 flex items-center justify-center text-white"><ArrowDown size={15} className="transition-transform duration-150 group-hover:translate-y-0.5" /></span></a>
+        </motion.div>
       </div>
-
-    </section>
+    </motion.section>
   );
 };

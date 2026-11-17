@@ -81,7 +81,7 @@ export const DoorsSection: React.FC<DoorsSectionProps> = ({ onSelectDoor }) => {
                 className="relative flex flex-col items-center group cursor-pointer"
               >
                 {/* Door Frame Surround (Arched Wall Molding in Monochrome) */}
-                <div className="relative w-full aspect-[9/16] max-w-[280px] bg-gradient-to-b from-zinc-900 via-zinc-950 to-black p-3.5 rounded-t-full border-t-2 border-x-2 border-zinc-700 shadow-[0_25px_60px_rgba(0,0,0,0.9)] overflow-hidden">
+                <div className="relative w-full aspect-[9/16] max-w-[280px] bg-gradient-to-b from-zinc-900 via-zinc-950 to-black p-3.5 rounded-t-full border-t-2 border-x-2 border-zinc-700 shadow-[0_25px_60px_rgba(0, 0, 0,0.9)] overflow-hidden">
                   
                   {/* Inside Room (Revealed when door swings open) */}
                   <div className="absolute inset-x-3.5 top-3.5 bottom-0 rounded-t-full bg-black overflow-hidden flex flex-col justify-end p-5">
@@ -89,7 +89,7 @@ export const DoorsSection: React.FC<DoorsSectionProps> = ({ onSelectDoor }) => {
                     <div 
                       className="absolute inset-0 transition-opacity duration-500 pointer-events-none"
                       style={{
-                        background: `radial-gradient(circle at 50% 60%, rgba(255, 255, 255, 0.4) 0%, rgba(0,0,0,0.95) 80%)`,
+                        background: 'radial-gradient(circle at 50% 60%, rgb(var(--color-white) / 0.15) 0%, rgb(var(--color-black) / 0.95) 80%)',
                         opacity: isHovered ? 1 : 0.1
                       }}
                     />
@@ -117,7 +117,7 @@ export const DoorsSection: React.FC<DoorsSectionProps> = ({ onSelectDoor }) => {
                       stiffness: 260,
                       damping: 20
                     }}
-                    className={`relative w-full h-full rounded-t-full bg-gradient-to-b ${door.doorColor} border-2 border-zinc-700 shadow-[0_10px_30px_rgba(0,0,0,0.7)] flex flex-col justify-between p-6 z-20 backface-hidden preserve-3d`}
+                    className={`relative w-full h-full rounded-t-full bg-gradient-to-b ${door.doorColor} border-2 border-zinc-700 shadow-[0_10px_30px_rgba(0, 0, 0,0.7)] flex flex-col justify-between p-6 z-20 backface-hidden preserve-3d`}
                   >
                     {/* Door Vertical Inset Paneling / Molding */}
                     <div className="absolute inset-x-4 top-14 bottom-4 border border-white/10 rounded-t-full pointer-events-none" />
@@ -126,7 +126,7 @@ export const DoorsSection: React.FC<DoorsSectionProps> = ({ onSelectDoor }) => {
                     {/* Top: Polished Chrome Nameplate */}
                     <div className="mt-14 relative z-10 flex justify-center">
                       <div className="chrome-metal px-3.5 py-1.5 rounded-sm shadow-md border border-white/80 flex items-center justify-center">
-                        <span className="font-mono font-black text-[10px] sm:text-[11px] tracking-wider uppercase text-black">
+                        <span className="font-mono font-black text-[10px] sm:text-[11px] tracking-wider uppercase text-[#090909]">
                           {door.nameplate}
                         </span>
                       </div>
@@ -137,7 +137,7 @@ export const DoorsSection: React.FC<DoorsSectionProps> = ({ onSelectDoor }) => {
                       {/* Chrome Handle & Keyhole */}
                       <div className="flex flex-col items-center">
                         {/* Metallic lever handle */}
-                        <div className="w-9 h-3 rounded-full bg-gradient-to-r from-zinc-300 via-white to-zinc-400 shadow-[0_4px_8px_rgba(0,0,0,0.8)] border border-white/60 group-hover:rotate-6 transition-transform" />
+                        <div className="w-9 h-3 rounded-full bg-gradient-to-r from-zinc-300 via-white to-zinc-400 shadow-[0_4px_8px_rgba(0, 0, 0,0.8)] border border-white/60 group-hover:rotate-6 transition-transform" />
                         {/* Chrome backplate */}
                         <div className="w-3 h-8 -mt-2 rounded bg-gradient-to-b from-zinc-400 via-zinc-600 to-zinc-800 shadow-sm flex items-center justify-center">
                           <div className="w-1 h-2 rounded-full bg-black" />

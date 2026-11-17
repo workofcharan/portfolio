@@ -111,24 +111,27 @@ export const FaqSection: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-20px' }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
+                style={{ backgroundColor: 'var(--bg-card)', color: 'var(--text-primary)' }}
                 className={`rounded-2xl transition-all duration-300 border ${
                   isOpen
-                    ? 'bg-zinc-950 border-white/30 shadow-[0_10px_30px_rgba(255,255,255,0.05)]'
-                    : 'bg-black/60 border-white/10 hover:border-white/20 hover:bg-zinc-950/60'
+                    ? 'border-[var(--border-bright)] shadow-sm'
+                    : 'border-[var(--border-subtle)] hover:border-[var(--border-bright)]'
                 }`}
               >
                 {/* Question Trigger Bar */}
                 <button
                   type="button"
                   onClick={() => toggleItem(item.id)}
-                  className="w-full py-5 px-6 sm:px-8 flex items-center justify-between gap-4 text-left select-none group"
+                  className="w-full rounded-2xl py-5 px-6 sm:px-8 flex items-center justify-between gap-4 text-left select-none group focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--text-primary)]"
                   aria-expanded={isOpen}
+                  aria-controls={`faq-answer-${item.id}`}
+                  id={`faq-question-${item.id}`}
                 >
                   <div className="flex items-center gap-4 sm:gap-6 min-w-0">
-                    <span className="text-xs font-mono font-bold text-zinc-500 group-hover:text-white transition-colors shrink-0">
+                    <span className="text-xs font-mono font-bold text-[var(--text-muted)] shrink-0">
                       0{index + 1}
                     </span>
-                    <h3 className="text-base sm:text-lg font-bold font-display text-zinc-100 group-hover:text-white transition-colors leading-snug">
+                    <h3 className="text-base sm:text-lg font-bold font-display text-[var(--text-primary)] leading-snug">
                       {item.question}
                     </h3>
                   </div>
@@ -137,8 +140,8 @@ export const FaqSection: React.FC = () => {
                   <div
                     className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 border transition-all duration-300 ${
                       isOpen
-                        ? 'bg-white text-black border-white rotate-45'
-                        : 'bg-zinc-900 text-zinc-400 border-white/10 group-hover:border-white/40 group-hover:text-white'
+                        ? 'bg-[var(--text-primary)] text-[var(--bg-primary)] border-[var(--text-primary)] rotate-45'
+                        : 'bg-[var(--bg-surface)] text-[var(--text-primary)] border-[var(--border-bright)]'
                     }`}
                   >
                     <Plus size={16} strokeWidth={2.5} />
@@ -149,13 +152,16 @@ export const FaqSection: React.FC = () => {
                 <AnimatePresence initial={false}>
                   {isOpen && (
                     <motion.div
+                      id={`faq-answer-${item.id}`}
+                      role="region"
+                      aria-labelledby={`faq-question-${item.id}`}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 sm:px-8 pb-6 pt-1 text-sm sm:text-base text-zinc-300 font-sans leading-relaxed border-t border-white/5 space-y-3">
+                      <div className="px-6 sm:px-8 pb-6 pt-4 text-sm sm:text-base text-[var(--text-muted)] font-sans leading-relaxed border-t border-[var(--border-subtle)] space-y-3">
                         <p>{item.answer}</p>
                         
                         {item.highlight && (
@@ -164,7 +170,7 @@ export const FaqSection: React.FC = () => {
                               <Sparkles size={11} className="text-white" />
                               Key takeaway:
                             </span>
-                            <span className="text-xs font-mono font-semibold px-2.5 py-1 rounded-md bg-white/10 text-white border border-white/20">
+                            <span className="text-xs font-mono font-semibold px-2.5 py-1 rounded-md bg-[var(--bg-surface)] text-[var(--text-primary)] border border-[var(--border-bright)]">
                               {item.highlight}
                             </span>
                           </div>

@@ -4,31 +4,59 @@
 
 @layer base {
   :root {
+    --color-primary: 190 242 100;
+    color-scheme: dark;
+    --color-black: 0 0 0;
+    --color-white: 255 255 255;
+    --color-zinc-100: 244 244 244;
+    --color-zinc-200: 228 228 228;
+    --color-zinc-300: 212 212 212;
+    --color-zinc-400: 162 162 162;
+    --color-zinc-500: 114 114 114;
+    --color-zinc-600: 83 83 83;
+    --color-zinc-700: 64 64 64;
+    --color-zinc-800: 39 39 39;
+    --color-zinc-900: 24 24 24;
+    --color-zinc-950: 9 9 9;
     --bg-primary: #000000;
     --bg-surface: #0a0a0a;
     --bg-card: #121212;
     --border-subtle: #262626;
     --border-bright: #404040;
     --text-primary: #ffffff;
-    --text-muted: #a1a1aa;
+    --text-muted: #a2a2a2;
     --accent: #ffffff;
   }
 
   html.light {
+    --color-primary: 66 98 22;
+    color-scheme: light;
+    --color-black: 255 255 255;
+    --color-white: 24 24 24;
+    --color-zinc-100: 39 39 39;
+    --color-zinc-200: 64 64 64;
+    --color-zinc-300: 64 64 64;
+    --color-zinc-400: 83 83 83;
+    --color-zinc-500: 83 83 83;
+    --color-zinc-600: 83 83 83;
+    --color-zinc-700: 162 162 162;
+    --color-zinc-800: 212 212 212;
+    --color-zinc-900: 244 244 244;
+    --color-zinc-950: 250 250 250;
     --bg-primary: #ffffff;
-    --bg-surface: #f4f4f5;
+    --bg-surface: #f4f4f4;
     --bg-card: #fafafa;
-    --border-subtle: #e4e4e7;
-    --border-bright: #d4d4d8;
-    --text-primary: #09090b;
-    --text-muted: #71717a;
-    --accent: #09090b;
+    --border-subtle: #e4e4e4;
+    --border-bright: #d4d4d4;
+    --text-primary: #090909;
+    --text-muted: #535353;
+    --accent: #090909;
   }
 
   body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     overflow-x: hidden;
     transition: background-color 0.4s ease, color 0.4s ease;
   }
@@ -59,22 +87,22 @@
   background: #000000;
 }
 ::-webkit-scrollbar-thumb {
-  background: #27272a;
+  background: #272727;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46;
+  background: #404040;
 }
 
 /* Chrome / Silver Metallic Effect for Nameplates */
 .chrome-metal {
-  background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 45%, #e4e4e7 60%, #52525b 100%);
-  color: #09090b;
+  background: linear-gradient(135deg, #ffffff 0%, #a2a2a2 45%, #e4e4e4 60%, #535353 100%);
+  color: #090909;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.9);
 }
 
 .chrome-border {
-  border-image: linear-gradient(to bottom right, #ffffff, #71717a, #27272a) 1;
+  border-image: linear-gradient(to bottom right, #ffffff, #727272, #272727) 1;
 }
 
 /* Monochrome Starburst / Celestial Dial */
@@ -109,3 +137,190 @@
   animation: marquee 32s linear infinite;
 }
 
+
+/* A consistent editorial type system across the portfolio. */
+@layer base {
+  html { scroll-padding-top: 6rem; }
+  h1, h2, h3, h4 { text-wrap: balance; }
+  p { text-wrap: pretty; }
+  button, a, input, textarea { -webkit-tap-highlight-color: transparent; }
+  :focus-visible { outline: 2px solid #dddddd; outline-offset: 5px; }
+}
+.portfolio-hero { padding-top: 8rem; }
+.hero-topline { border-bottom: 1px solid rgba(255, 255, 255,.12); padding-bottom: 1.5rem; }
+.hero-title { font-family: 'Manrope', sans-serif; font-size: clamp(2.5rem, 6.4vw, 5.5rem); line-height: 1.09; font-weight: 500; }
+.hero-serif { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; font-style: italic; color: #dddddd; }
+.hero-primary { background: #dddddd; color: #141414; transition: background-color 150ms ease-out; }
+.hero-primary:hover { background: #ececec; }
+.hero-portrait { width: 100%; max-width: 340px; justify-self: end; }
+main section:not(#home) h2 { font-weight: 500; line-height: 1.15; }
+main section p { line-height: 1.75; }
+@media (max-width: 1023px) {
+  .hero-portrait { justify-self: start; max-width: 300px; }
+}
+@media (max-width: 639px) {
+  .portfolio-hero { padding-top: 7rem; }
+  .hero-portrait { max-width: 260px; }
+  .portfolio-nav nav { gap: 1rem; font-size: .8125rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* Display type and restrained interaction details. */
+.hero-title { font-size: clamp(2.6rem, 6.5vw, 5.65rem); font-weight: 600; line-height: 1.06; }
+.hero-serif { font-size: 1.08em; line-height: 1.12; }
+.hero-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: .6875rem; }
+.editorial-heading { font-family: 'Manrope', sans-serif; }
+.hero-actions a { transition: transform 180ms ease-out, background-color 180ms ease-out, color 180ms ease-out; }
+.hero-actions a:hover { transform: translateY(-3px); }
+.hero-actions a:active { transform: translateY(0); }
+.hero-actions a svg { transition: transform 180ms ease-out; }
+.hero-actions a:hover svg { transform: translate(2px, -2px); }
+.portfolio-nav nav a { position: relative; padding-block: .5rem; }
+.portfolio-nav nav a::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: #dddddd; transform: scaleX(0); transform-origin: left; transition: transform 180ms ease-out; }
+.portfolio-nav nav a:hover::after, .portfolio-nav nav a:focus-visible::after { transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce) {
+  .hero-actions a:hover, .hero-actions a:hover svg { transform: none; }
+}
+
+/* Light mode keeps the editorial accent readable on white surfaces. */
+html.light .hero-serif { color: #4d4d4d; }
+html.light ::-webkit-scrollbar-track { background: #f4f4f4; }
+html.light ::-webkit-scrollbar-thumb { background: #a2a2a2; }
+.portfolio-nav > div { padding-right: 4.5rem; }
+
+/* A single background surface, shared by every main section. */
+.portfolio-shell { isolation: isolate; background-color: #0b0b0b; }
+.background-light {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: #f3f3f3;
+  opacity: 0;
+  transition: opacity 180ms ease-out;
+}
+.background-light::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 96% 0%, rgba(215, 215, 215, .32), transparent 58%);
+}
+html.light .background-light { opacity: 1; }
+.portfolio-shell > main > section,
+.portfolio-shell > main > div.bg-black { background-color: transparent; }
+html.light .portfolio-nav { background-color: #f3f3f3; }
+.room-switch { width: 48px; }
+.room-switch-mount { width: 24px; height: 5px; border-radius: 0 0 4px 4px; background: #747474; }
+.room-switch-cord { width: 1px; height: 27px; background: #848484; }
+.room-switch-button {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #464646;
+  border-radius: 50%;
+  color: #d0d0d0;
+  background: #1a1a1a;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: color 150ms ease-out, background-color 150ms ease-out;
+}
+.room-switch-button:hover { color: #fff; background: #2b2b2b; }
+.room-switch-label { margin-top: 8px; color: #a2a2a2; font: 8px 'JetBrains Mono', monospace; white-space: nowrap; }
+html.light .room-switch-button { color: #454545; background: #e5e5e5; border-color: #b1b1b1; box-shadow: 0 0 24px rgba(188, 188, 188, .25); }
+html.light .room-switch-button:hover { background: #dbdbdb; }
+html.light .room-switch-label { color: #454545; }
+@media (prefers-reduced-motion: reduce) {
+  .background-light, .room-switch-button { transition: none; }
+}
+
+@keyframes shine {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+}
+.anime-nav-shine {
+  background: linear-gradient(90deg, transparent, rgb(var(--color-primary) / .18), transparent);
+  animation: shine 3s ease-in-out infinite;
+}
+html.light .anime-nav-surface { background-color: rgba(243, 243, 243, .94); }
+.portfolio-hero { padding-top: 10rem; }
+@media (max-width: 767px) {
+  .portfolio-hero { padding-top: 9.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .anime-nav-shine { animation: none; }
+}
+
+/* Keep light-mode labels readable on the warm page and pale cards. */
+html.light .anime-nav-link { color: #404040; }
+html.light .anime-nav-link:hover,
+html.light .anime-nav-link[aria-current='location'] { color: #191919; }
+html.light .hero-topline { border-bottom-color: rgba(24, 24, 24, .16); }
+html.light #story .opacity-70 { opacity: 1; }
+html.light #projects span.opacity-60 { opacity: 1; }
+html.light input::placeholder,
+html.light textarea::placeholder { color: #636363; opacity: 1; }
+
+/* Keep page backgrounds monochrome; content retains its natural colors. */
+.portfolio-shell { background-color: #000; }
+.background-light { background: #fff; }
+.background-light::after { background: radial-gradient(ellipse at 96% 0%, rgba(0, 0, 0, .04), transparent 58%); }
+.hero-primary { background: rgb(var(--color-white)); color: rgb(var(--color-black)); }
+.hero-primary:hover { background: rgb(var(--color-zinc-200)); }
+html.light .anime-nav-surface { background-color: rgba(255, 255, 255, .96); }
+html.light .room-switch-button { color: #000; background: #fff; border-color: #777; box-shadow: 0 0 24px rgba(0, 0, 0, .08); }
+html.light .room-switch-button:hover { background: #eee; }
+html.light .room-switch-label { color: #333; }
+
+
+/* Accent colors adapt for contrast without tinting the page background. */
+.hero-primary { background: #bef264; color: #111609; }
+.hero-primary:hover { background: #d9f99d; }
+html.light .text-lime-300,
+html.light .hover\:text-lime-300:hover { color: #426216; }
+:focus-visible { outline-color: rgb(var(--color-primary)); }
+
+/* Fade ticker content itself, so its edges match either page background. */
+.credentials-ticker { background: var(--bg-primary); color: var(--text-primary); border-block: 1px solid var(--border-subtle); }
+.credentials-ticker-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 4rem, #000 calc(100% - 4rem), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 4rem, #000 calc(100% - 4rem), transparent);
+}
+.ticker-text, .ticker-icon { color: var(--text-primary); }
+.ticker-icon { background: var(--bg-surface); border-color: var(--border-subtle); }
+.ticker-badge { color: var(--bg-primary); background: var(--text-primary); }
+.ticker-separator { color: var(--text-muted); }
+@media (max-width: 639px) {
+  .credentials-ticker-mask {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 1.5rem, #000 calc(100% - 1.5rem), transparent);
+    mask-image: linear-gradient(to right, transparent, #000 1.5rem, #000 calc(100% - 1.5rem), transparent);
+  }
+}
+
+/* Hero: editorial introduction paired with a personal portrait. */
+.hero-redesign { padding-top: 10.5rem; }
+.hero-display { font-family: 'Manrope', sans-serif; font-size: clamp(3.25rem, 6.6vw, 5.6rem); font-weight: 600; line-height: 1.05; }
+.hero-display-serif { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; font-style: italic; }
+.hero-photo-composition { width: 100%; max-width: 430px; justify-self: end; padding-right: 12px; }
+.hero-photo { aspect-ratio: 1 / 1.12; object-position: center 30%; }
+.hero-photo-outline { transform: translate(10px, -10px); bottom: 38px; }
+.hero-photo-index { background: rgba(0, 0, 0, .8); color: #fff; }
+.hero-photo-note { box-shadow: 0 10px 24px rgba(0, 0, 0, .12); }
+.hero-social svg:last-child { transition: transform 150ms ease-out; }
+.hero-social:hover svg:last-child { transform: translate(2px, -2px); }
+.hero-greeting-mark { display: inline-block; }
+@media (max-width: 1023px) {
+  .hero-photo-composition { justify-self: start; max-width: 420px; }
+  .hero-display { font-size: clamp(3.25rem, 9vw, 5.5rem); }
+}
+@media (max-width: 639px) {
+  .hero-redesign { padding-top: 9.5rem; }
+  .hero-photo-composition { max-width: 360px; }
+  .hero-footnotes { gap: 1.25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-social:hover svg:last-child { transform: none; }
+}

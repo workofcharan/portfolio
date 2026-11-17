@@ -36,7 +36,7 @@ interface Shockwave {
 }
 
 export const HalftoneWordmarkFooter: React.FC = () => {
-  const { playClickSound } = useTheme();
+  const { playClickSound, isDark } = useTheme();
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef<{ x: number; y: number; active: boolean }>({
@@ -115,7 +115,7 @@ export const HalftoneWordmarkFooter: React.FC = () => {
 
       const baselineY = height * 0.52;
 
-      offCtx.fillStyle = "#FFFFFF";
+      offCtx.fillStyle = "#ffffff";
       offCtx.fillText(wordmark, width / 2, baselineY);
 
       const imgData = offCtx.getImageData(0, 0, width, height);
@@ -191,9 +191,9 @@ export const HalftoneWordmarkFooter: React.FC = () => {
     let isRunning = true;
     const radius = 95;
 
-    // Pure black & white palette: ink is white, excitation is silver
-    const r1 = 255, g1 = 255, b1 = 255;
-    const r2 = 161, g2 = 161, b2 = 170; // zinc-400 silver
+    // Canvas pixels need an explicit palette; CSS text colors cannot recolor them.
+    const [r1, g1, b1] = isDark ? [255, 255, 255] : [24, 24, 24];
+    const [r2, g2, b2] = isDark ? [162, 162, 162] : [70, 70, 70];
 
     const render = () => {
       if (!isRunning) return;
@@ -291,7 +291,7 @@ export const HalftoneWordmarkFooter: React.FC = () => {
         cancelAnimationFrame(animFrameRef.current);
       }
     };
-  }, []);
+  }, [isDark]);
 
   // Pointer event listeners
   const handlePointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
@@ -421,7 +421,7 @@ export const HalftoneWordmarkFooter: React.FC = () => {
                 </li>
                 <li>
                   <a
-                    href="https://yaadri.vercel.app"
+                    href="https://yaadri2.vercel.app"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-zinc-300 hover:text-white transition-colors flex items-center gap-1.5"

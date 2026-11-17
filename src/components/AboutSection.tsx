@@ -49,12 +49,12 @@ export const AboutSection: React.FC = () => {
             className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-950 border border-white/15 text-xs font-mono text-white mb-4"
           >
             <Code2 size={13} />
-            <span>Developer Profile & Philosophy</span>
+            <span>A little about me</span>
           </motion.div>
 
           <div className="flex justify-center">
             <BlurRevealText
-              text="Engineering software that solves real problems."
+              text="Curiosity, turned into code."
               className="text-3xl sm:text-5xl font-extrabold font-display text-white tracking-tight leading-tight justify-center text-center"
             />
           </div>
@@ -66,7 +66,7 @@ export const AboutSection: React.FC = () => {
             transition={{ delay: 0.2 }}
             className="mt-4 text-base sm:text-lg text-zinc-400 font-sans"
           >
-            I combine clean frontend aesthetics, explainable algorithms, and robust architectures to turn complex requirements into elegant, accessible software.
+            I enjoy understanding how things work, asking better questions, and building interfaces and systems that make everyday tasks easier.
           </motion.p>
         </div>
 

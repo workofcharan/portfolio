@@ -1,69 +1,24 @@
 import React from 'react';
-import { motion, type Variants } from 'framer-motion';
-
+import { motion, useReducedMotion } from 'framer-motion';
 interface BlurRevealTextProps {
   text: string;
   className?: string;
   delay?: number;
   as?: 'h1' | 'h2' | 'h3' | 'p' | 'span';
 }
+const headings = { h1: motion.h1, h2: motion.h2, h3: motion.h3, p: motion.p, span: motion.span };
 
-export const BlurRevealText: React.FC<BlurRevealTextProps> = ({
-  text,
-  className = '',
-  delay = 0,
-  as: Component = 'h2',
-}) => {
-  const words = text.split(' ');
-
-  const container = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.045,
-        delayChildren: delay,
-      },
-    },
-  };
-
-  const child: Variants = {
-    hidden: {
-      opacity: 0,
-      filter: 'blur(8px)',
-      x: -16,
-      y: 0,
-    },
-    visible: {
-      opacity: 1,
-      filter: 'blur(0px)',
-      x: 0,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: [0.16, 1, 0.3, 1] as any,
-      },
-    },
-  };
-
+export const BlurRevealText: React.FC<BlurRevealTextProps> = ({ text, className = '', delay = 0, as = 'h2' }) => {
+  const reducedMotion = useReducedMotion();
+  const Component = headings[as];
   return (
-    <motion.div
-      variants={container}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-40px' }}
-      className={`inline-block flex-wrap ${className}`}
-    >
-      {words.map((word, index) => (
-        <motion.span
-          key={index}
-          variants={child}
-          className="inline-block mr-[0.28em] will-change-transform"
-        >
-          {word}
-        </motion.span>
+    <Component className={`editorial-heading ${className}`} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}
+      variants={{ hidden: {}, visible: { transition: { staggerChildren: reducedMotion ? 0 : 0.035, delayChildren: reducedMotion ? 0 : delay } } }}>
+      {text.split(' ').map((word, index) => (
+        <React.Fragment key={`${word}-${index}`}>
+          <motion.span className="inline-block" variants={{ hidden: { opacity: reducedMotion ? 1 : 0, y: reducedMotion ? 0 : 14 }, visible: { opacity: 1, y: 0, transition: { duration: reducedMotion ? 0 : 0.45, ease: 'easeOut' } } }}>{word}</motion.span>{' '}
+        </React.Fragment>
       ))}
-    </motion.div>
+    </Component>
   );
 };
-

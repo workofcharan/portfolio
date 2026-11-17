@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { SKILL_CATEGORIES } from '../data/portfolioData';
 import { useTheme } from '../context/ThemeContext';
 import { Cpu, Code, Layers, Wrench } from 'lucide-react';
@@ -8,6 +8,7 @@ import { BlurRevealText } from './BlurRevealText';
 export const SkillsSection: React.FC = () => {
   const { playClickSound } = useTheme();
   const [selectedCategory, setSelectedCategory] = useState<number>(0);
+  const reducedMotion = useReducedMotion();
 
   const categoryIcons = [Code, Layers, Cpu, Wrench];
 
@@ -85,14 +86,17 @@ export const SkillsSection: React.FC = () => {
 
           <motion.div
             key={selectedCategory}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: reducedMotion ? 0 : 0.06 } } }}
             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
           >
             {SKILL_CATEGORIES[selectedCategory].skills.map((skill) => (
-              <div
+              <motion.div
                 key={skill.name}
+                variants={{ hidden: { opacity: reducedMotion ? 1 : 0, y: reducedMotion ? 0 : 16 }, visible: { opacity: 1, y: 0, transition: { duration: reducedMotion ? 0 : 0.4, ease: 'easeOut' } } }}
+                whileHover={reducedMotion ? undefined : { y: -4 }}
                 className="p-5 rounded-2xl bg-zinc-950 border border-white/15 hover:border-white hover:bg-zinc-900 transition-all duration-200 group flex items-center justify-between shadow-sm"
               >
                 <div className="space-y-1">
@@ -109,7 +113,7 @@ export const SkillsSection: React.FC = () => {
                     {skill.level}
                   </span>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         </div>

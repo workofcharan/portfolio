@@ -2,17 +2,18 @@ export interface Project {
   id: string;
   title: string;
   subtitle: string;
-  category: 'fullstack' | 'ai-ml' | 'systems' | 'iot';
+  category: 'fullstack' | 'ai-ml' | 'systems' | 'iot' | 'other';
   categoryBadge: string;
   description: string;
   highlights: string[];
   techStack: string[];
   githubUrl: string;
   liveUrl?: string;
+  liveUnavailable?: boolean;
   accentColor: string;
   iconName: string;
   stats?: { label: string; value: string };
-  previewType: 'desktop' | 'mobile' | 'dashboard' | 'cli';
+  previewType: 'desktop' | 'mobile' | 'dashboard' | 'cli' | 'repository';
 }
 
 export interface Door {

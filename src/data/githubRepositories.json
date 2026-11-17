@@ -1,0 +1,166 @@
+{
+  "username": "workofcharan",
+  "syncedAt": "2026-11-17T15:11:32.342Z",
+  "repositories": [
+    {
+      "name": "ce",
+      "description": null,
+      "html_url": "https://github.com/workofcharan/ce",
+      "homepage": "anyce.vercel.app",
+      "language": "JavaScript",
+      "topics": [],
+      "fork": false,
+      "archived": false
+    },
+    {
+      "name": "kitchen-bots",
+      "description": null,
+      "html_url": "https://github.com/workofcharan/kitchen-bots",
+      "homepage": "kitchen-bots.vercel.app",
+      "language": "TypeScript",
+      "topics": [],
+      "fork": true,
+      "archived": false
+    },
+    {
+      "name": "portfolio",
+      "description": null,
+      "html_url": "https://github.com/workofcharan/portfolio",
+      "homepage": "charanpf.vercel.app",
+      "language": "TypeScript",
+      "topics": [],
+      "fork": false,
+      "archived": false
+    },
+    {
+      "name": "FINCORE",
+      "description": null,
+      "html_url": "https://github.com/workofcharan/FINCORE",
+      "homepage": "https://fincoreconsultancy.vercel.app",
+      "language": "TypeScript",
+      "topics": [],
+      "fork": false,
+      "archived": false
+    },
+    {
+      "name": "sampradayaevents",
+      "description": null,
+      "html_url": "https://github.com/workofcharan/sampradayaevents",
+      "homepage": "https://sampradayaevents.vercel.app",
+      "language": "JavaScript",
+      "topics": [],
+      "fork": false,
+      "archived": false
+    },
+    {
+      "name": "credit-ledger",
+      "description": null,
+      "html_url": "https://github.com/workofcharan/credit-ledger",
+      "homepage": "https://credit-ledger-henna.vercel.app",
+      "language": "JavaScript",
+      "topics": [],
+      "fork": false,
+      "archived": false
+    },
+    {
+      "name": "review",
+      "description": null,
+      "html_url": "https://github.com/workofcharan/review",
+      "homepage": "revpulse1.vercel.app",
+      "language": "JavaScript",
+      "topics": [],
+      "fork": false,
+      "archived": false
+    },
+    {
+      "name": "crave-plus",
+      "description": null,
+      "html_url": "https://github.com/workofcharan/crave-plus",
+      "homepage": "https://crave-plus.vercel.app",
+      "language": "JavaScript",
+      "topics": [],
+      "fork": false,
+      "archived": false
+    },
+    {
+      "name": "yaadri2",
+      "description": null,
+      "html_url": "https://github.com/workofcharan/yaadri2",
+      "homepage": "https://yaadri2.vercel.app",
+      "language": "JavaScript",
+      "topics": [],
+      "fork": false,
+      "archived": false
+    },
+    {
+      "name": "workofcharan",
+      "description": null,
+      "html_url": "https://github.com/workofcharan/workofcharan",
+      "homepage": null,
+      "language": null,
+      "topics": [],
+      "fork": false,
+      "archived": false
+    },
+    {
+      "name": "rural-advisor",
+      "description": null,
+      "html_url": "https://github.com/workofcharan/rural-advisor",
+      "homepage": "https://rural-advisor.vercel.app",
+      "language": "JavaScript",
+      "topics": [],
+      "fork": false,
+      "archived": false
+    },
+    {
+      "name": "np",
+      "description": null,
+      "html_url": "https://github.com/workofcharan/np",
+      "homepage": "autohealarl.vercel.app",
+      "language": "Python",
+      "topics": [],
+      "fork": false,
+      "archived": false
+    },
+    {
+      "name": "fdai",
+      "description": null,
+      "html_url": "https://github.com/workofcharan/fdai",
+      "homepage": "https://fdai-five.vercel.app",
+      "language": "JavaScript",
+      "topics": [],
+      "fork": false,
+      "archived": false
+    },
+    {
+      "name": "crop-recommendation-system",
+      "description": null,
+      "html_url": "https://github.com/workofcharan/crop-recommendation-system",
+      "homepage": "https://cropmindcrs.vercel.app",
+      "language": "HTML",
+      "topics": [],
+      "fork": false,
+      "archived": false
+    },
+    {
+      "name": "DietDost",
+      "description": null,
+      "html_url": "https://github.com/workofcharan/DietDost",
+      "homepage": "https://dietdost.vercel.app/",
+      "language": "TypeScript",
+      "topics": [],
+      "fork": false,
+      "archived": false
+    },
+    {
+      "name": "emw",
+      "description": null,
+      "html_url": "https://github.com/workofcharan/emw",
+      "homepage": "https://emw-three.vercel.app",
+      "language": "TypeScript",
+      "topics": [],
+      "fork": false,
+      "archived": false
+    }
+  ]
+}

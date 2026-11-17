@@ -1,4 +1,7 @@
 import { Project, Door, TimelineMilestone, SkillCategory } from '../types';
+import githubSnapshot from './githubRepositories.json';
+import { mergeGitHubProjects, applyProjectLinkChecks } from './githubProjects';
+import projectLinkStatus from './projectLinkStatus.json';
 
 export const PERSONAL_INFO = {
   name: 'REKAPALLI SRI CHARAN',
@@ -27,7 +30,7 @@ export const DOORS: Door[] = [
     nameplate: 'FULL STACK WEB',
     title: 'Full-Stack Web & Platforms',
     subtitle: 'From pixel-perfect editorial UX to production-grade web applications.',
-    doorColor: 'from-zinc-800 via-neutral-900 to-black',
+    doorColor: 'from-zinc-800 via-zinc-900 to-black',
     doorBorderColor: 'border-zinc-600',
     glowColor: 'rgba(255, 255, 255, 0.45)',
     tag: 'PRODUCTION WEB ENGINES',
@@ -45,7 +48,7 @@ export const DOORS: Door[] = [
     nameplate: 'AI & ML SYSTEMS',
     title: 'Explainable AI & Machine Learning',
     subtitle: 'Intelligent decision engines built for transparent human-in-the-loop auditing.',
-    doorColor: 'from-neutral-800 via-zinc-900 to-black',
+    doorColor: 'from-zinc-800 via-zinc-900 to-black',
     doorBorderColor: 'border-zinc-600',
     glowColor: 'rgba(255, 255, 255, 0.45)',
     tag: 'INTELLIGENT DECISION ENGINES',
@@ -63,7 +66,7 @@ export const DOORS: Door[] = [
     nameplate: 'COGNITIVE TECH',
     title: 'Cognitive & Assistive Systems',
     subtitle: 'Human-centric digital companions and privacy-first local graph memory.',
-    doorColor: 'from-stone-800 via-zinc-900 to-black',
+    doorColor: 'from-zinc-800 via-zinc-900 to-black',
     doorBorderColor: 'border-zinc-600',
     glowColor: 'rgba(255, 255, 255, 0.45)',
     tag: 'HUMAN-CENTRIC ARCHITECTURES',
@@ -96,7 +99,7 @@ export const DOORS: Door[] = [
   }
 ];
 
-export const PROJECTS: Project[] = [
+const CURATED_PROJECTS: Project[] = [
   {
     id: 'credit-ledger',
     title: 'Explainable Credit Ledger',
@@ -174,8 +177,8 @@ export const PROJECTS: Project[] = [
       'Caregiver Copilot dashboard tracking interaction consistency and cognitive trends'
     ],
     techStack: ['React', 'TypeScript', 'Tailwind CSS', 'Graph Visualization', 'LocalStorage', 'Vercel'],
-    githubUrl: 'https://github.com/workofcharan/yaadri',
-    liveUrl: 'https://yaadri.vercel.app',
+    githubUrl: 'https://github.com/workofcharan/yaadri2',
+    liveUrl: 'https://yaadri2.vercel.app',
     accentColor: '#ffffff',
     iconName: 'HeartHandshake',
     stats: { label: 'Privacy', value: '100% Local' },
@@ -261,6 +264,10 @@ export const PROJECTS: Project[] = [
     previewType: 'dashboard'
   }
 ];
+
+export const PROJECTS: Project[] = applyProjectLinkChecks(mergeGitHubProjects(CURATED_PROJECTS, githubSnapshot.repositories), projectLinkStatus.results);
+export const GITHUB_SYNCED_AT = githubSnapshot.syncedAt;
+export const PROJECT_LINKS_CHECKED_AT = projectLinkStatus.checkedAt;
 
 export const TIMELINE_MILESTONES: TimelineMilestone[] = [
   {

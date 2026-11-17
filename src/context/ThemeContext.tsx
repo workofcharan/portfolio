@@ -13,12 +13,17 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [isDark, setIsDark] = useState<boolean>(true);
-  const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
+  const [isDark, setIsDark] = useState<boolean>(() => {
+    try { return localStorage.getItem('portfolio-theme') !== 'light'; }
+    catch { return true; }
+  });
+  const [soundEnabled, setSoundEnabled] = useState<boolean>(false);
   const [activeDoor, setActiveDoor] = useState<string | null>(null);
 
   useEffect(() => {
     const root = document.documentElement;
+    try { localStorage.setItem('portfolio-theme', isDark ? 'dark' : 'light'); }
+    catch { /* Theme switching also works when storage is unavailable. */ }
     if (isDark) {
       root.classList.add('dark');
       root.classList.remove('light');
@@ -88,4 +93,3 @@ export const useTheme = () => {
   }
   return context;
 };
-

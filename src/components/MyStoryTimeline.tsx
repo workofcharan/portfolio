@@ -42,7 +42,7 @@ export const MyStoryTimeline: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* Left Column matching frame 014 of reel:
-              - • My story
+              - â€¢ My story
               - Let's go back in time.
               - Giant Year display (2026 / 2025 / 2024)
               - Rotating Compass / Starburst Dial */}
@@ -59,7 +59,7 @@ export const MyStoryTimeline: React.FC = () => {
                 className="text-3xl sm:text-5xl font-extrabold font-display text-white tracking-tight leading-tight"
               />
               
-              <p className="mt-3 text-sm text-zinc-400 font-sans">
+              <p className="mt-3 text-sm text-[var(--text-muted)] font-sans">
                 A verified chronological timeline of my academic milestones, national hackathons, technical credentials, and engineering projects.
               </p>
             </div>
@@ -84,18 +84,18 @@ export const MyStoryTimeline: React.FC = () => {
                     exit={{ opacity: 0, scale: 1.15, y: -15 }}
                     transition={{ duration: 0.35 }}
                   >
-                    <span className="text-7xl sm:text-8xl lg:text-9xl font-black font-display tracking-tighter text-white select-none drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)]">
+                    <span className="text-7xl sm:text-8xl lg:text-9xl font-black font-display tracking-tighter text-white select-none drop-shadow-[0_15px_30px_rgba(0, 0, 0,0.9)]">
                       {activeMilestone.year}
                     </span>
                   </motion.div>
                 </AnimatePresence>
 
                 {/* Sub-period & index counter */}
-                <div className="mt-2 flex items-center gap-3 text-xs font-mono text-zinc-400">
-                  <span className="font-bold text-white">
+                <div className="mt-2 flex items-center gap-3 text-xs font-mono text-[var(--text-muted)]">
+                  <span className="font-bold text-[var(--text-primary)]">
                     {activeMilestone.period}
                   </span>
-                  <span>•</span>
+                  <span>â€¢</span>
                   <span className="px-2 py-0.5 rounded bg-zinc-900 border border-white/15 text-white">
                     0{activeMilestoneIndex + 1} / 0{TIMELINE_MILESTONES.length}
                   </span>
@@ -113,10 +113,10 @@ export const MyStoryTimeline: React.FC = () => {
                   className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all ${
                     idx === activeMilestoneIndex
                       ? 'bg-white text-black font-bold shadow-md'
-                      : 'bg-zinc-950 border border-white/15 text-zinc-400 hover:text-white'
+                      : 'bg-zinc-950 border border-white/15 text-[var(--text-muted)] hover:text-white'
                   }`}
                 >
-                  {m.year} • 0{idx + 1}
+                  {m.year} â€¢ 0{idx + 1}
                 </button>
               ))}
             </div>
@@ -142,14 +142,14 @@ export const MyStoryTimeline: React.FC = () => {
                   transition={{ delay: idx * 0.1 }}
                   onClick={() => handleSelectMilestone(idx)}
                   className={`relative sm:pl-16 cursor-pointer group transition-all duration-300 ${
-                    isActive ? 'scale-[1.02]' : 'opacity-70 hover:opacity-100'
+                    isActive ? 'scale-[1.02]' : ''
                   }`}
                 >
                   {/* Glowing Node Dot on Timeline */}
                   <div 
                     className={`absolute left-4 top-8 -translate-x-1/2 w-5 h-5 rounded-full border-2 transition-all hidden sm:flex items-center justify-center ${
                       isActive
-                        ? 'bg-white border-white shadow-[0_0_15px_rgba(255,255,255,0.9)] scale-125'
+                        ? 'bg-white border-white shadow-[0_0_15px_rgba(255, 255, 255,0.9)] scale-125'
                         : 'bg-black border-zinc-700 group-hover:border-white'
                     }`}
                   >
@@ -158,45 +158,46 @@ export const MyStoryTimeline: React.FC = () => {
 
                   {/* Card Body */}
                   <div 
+                    style={{ backgroundColor: 'var(--bg-card)', color: 'var(--text-primary)' }}
                     className={`p-6 sm:p-7 rounded-3xl border transition-all duration-300 ${
                       isActive
-                        ? 'bg-zinc-950 border-white shadow-2xl shadow-white/5'
-                        : 'bg-zinc-950/60 border-white/10 hover:bg-zinc-950 hover:border-white/30'
+                        ? 'border-[var(--text-primary)] shadow-lg'
+                        : 'border-[var(--border-subtle)] hover:border-[var(--border-bright)]'
                     }`}
                   >
                     {/* Header */}
                     <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                      <span className="text-xs font-mono font-bold text-white">
+                      <span className="text-xs font-mono font-bold text-[var(--text-primary)]">
                         {milestone.period}
                       </span>
-                      <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-white/10 text-white border border-white/20">
+                      <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-[var(--bg-surface)] text-[var(--text-primary)] border border-[var(--border-bright)]">
                         {milestone.badge}
                       </span>
                     </div>
 
                     {/* Title & Role */}
-                    <h3 className="text-lg sm:text-xl font-bold font-display text-white group-hover:text-zinc-200 transition-colors">
+                    <h3 className="text-lg sm:text-xl font-bold font-display text-[var(--text-primary)]">
                       {milestone.title}
                     </h3>
                     
-                    <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-zinc-400 mt-1 mb-3">
-                      <span className="text-white font-semibold">{milestone.role}</span>
-                      <span>•</span>
+                    <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-[var(--text-muted)] mt-1 mb-3">
+                      <span className="text-[var(--text-primary)] font-semibold">{milestone.role}</span>
+                      <span>â€¢</span>
                       <span>{milestone.organization}</span>
-                      <span>•</span>
+                      <span>â€¢</span>
                       <span>{milestone.location}</span>
                     </div>
 
                     {/* Summary */}
-                    <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-sans mb-4">
+                    <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed font-sans mb-4">
                       {milestone.summary}
                     </p>
 
                     {/* Highlights */}
-                    <div className="space-y-1.5 pt-2 border-t border-white/10">
+                    <div className="space-y-1.5 pt-2 border-t border-[var(--border-subtle)]">
                       {milestone.bullets.map((bullet, bIdx) => (
-                        <div key={bIdx} className="flex items-start gap-2 text-xs text-zinc-400">
-                          <CheckCircle2 size={13} className="text-white shrink-0 mt-0.5" />
+                        <div key={bIdx} className="flex items-start gap-2 text-xs text-[var(--text-muted)]">
+                          <CheckCircle2 size={13} className="text-[var(--text-primary)] shrink-0 mt-0.5" />
                           <span>{bullet}</span>
                         </div>
                       ))}

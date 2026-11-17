@@ -65,3 +65,31 @@ pnpm run preview
 - **Confetti**: Canvas Confetti
 
 # portfolio
+
+### Reusable UI components
+
+This portfolio uses Vite, React, TypeScript, and Tailwind CSS. Its `@/` alias points to `src/`.
+
+- Reusable UI components: `src/components/ui` (`@/components/ui`)
+- Page sections: `src/components`
+- Global styles: `src/index.css`
+- Class-name utility: `src/lib/utils.ts`
+- shadcn configuration: `components.json`
+
+The `ui` folder separates reusable controls from portfolio sections and gives shadcn a consistent installation location. Tailwind, TypeScript, Lucide, and Framer Motion are already installed; no framework migration or additional packages are needed for this navbar.
+
+`Navbar.tsx` supplies the portfolio section names, hash links, and Lucide icons to `AnimeNavBar`. Native links support section navigation and browser history. The component follows the visible section while scrolling, uses labeled icons on mobile and text on desktop, and respects reduced-motion preferences. The supplied Next.js links were adapted to native anchors because this is a Vite app. No image assets are required.
+
+### GitHub project synchronization
+
+All public repositories for `workofcharan` are included, including forks, archived repositories, and the profile repository. Existing case studies retain their descriptions; additional repositories use factual GitHub metadata and repository previews. The same merged list supplies the project showcase, hero count, and terminal.
+
+- `npm run sync:github` refreshes `src/data/githubRepositories.json`.
+- `npm run dev` and `npm run build` refresh it automatically before starting.
+- `npm run test:github` checks complete coverage, unique entries, case-study preservation, and safe demo URLs.
+
+The sync follows GitHub pagination. If GitHub is unavailable or rate-limited, builds use the last saved snapshot and report its date. The project section displays the snapshot date. New repositories appear after the next build and deployment; an already deployed site does not fetch GitHub on every visit. Private repositories require authenticated access and are not exposed.
+
+### Public project links
+
+The project showcase includes a directory with direct GitHub and live-site buttons. `npm run check:links` checks deployment URLs and saves the results in `src/data/projectLinkStatus.json`. Confirmed HTTP failures and Vercel login redirects are excluded from live-site buttons; the GitHub source link stays available. A failed network check does not remove a demo, and checks for an old URL do not block a changed homepage. Run `npm run sync:github`, `npm run check:links`, then `npm run build` to refresh and publish the link list. HTTP success confirms that the entry page responds; it does not verify every feature inside an application.

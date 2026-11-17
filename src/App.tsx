@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { MotionConfig } from 'framer-motion';
+import { ScrollProgress } from './components/ScrollProgress';
 import { ThemeProvider } from './context/ThemeContext';
 import { Navbar } from './components/Navbar';
 import { PullCordSwitch } from './components/PullCordSwitch';
@@ -48,7 +50,10 @@ export const App: React.FC = () => {
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-black text-white relative transition-colors duration-500 overflow-x-hidden selection:bg-white selection:text-black">
+      <MotionConfig reducedMotion="user">
+      <div className="portfolio-shell min-h-screen bg-black text-white relative transition-colors duration-500 overflow-x-hidden selection:bg-white selection:text-black">
+        <ScrollProgress />
+        <div className="background-light" aria-hidden="true" />
         
         {/* Creative Custom Magnetic Cursor */}
         <CustomCursor />
@@ -81,6 +86,7 @@ export const App: React.FC = () => {
           <StackedProjectsDeck
             selectedDoorId={selectedDoorId}
             onResetDoor={handleResetDoor}
+            onSelectCategory={handleSelectDoor}
           />
 
           {/* Section D: About & Engineering Mindset */}
@@ -133,6 +139,7 @@ export const App: React.FC = () => {
         </div>
 
       </div>
+      </MotionConfig>
     </ThemeProvider>
   );
 };

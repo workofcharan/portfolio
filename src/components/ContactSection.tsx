@@ -23,7 +23,7 @@ export const ContactSection: React.FC = () => {
       particleCount: 50,
       spread: 60,
       origin: { y: 0.8 },
-      colors: ['#ffffff', '#e4e4e7', '#a1a1aa'],
+      colors: ['#ffffff', '#e4e4e4', '#a2a2a2'],
     });
 
     setTimeout(() => {
@@ -46,7 +46,7 @@ export const ContactSection: React.FC = () => {
         particleCount: 90,
         spread: 80,
         origin: { y: 0.6 },
-        colors: ['#ffffff', '#d4d4d8', '#71717a'],
+        colors: ['#ffffff', '#d4d4d4', '#727272'],
       });
 
       const subject = encodeURIComponent(`Portfolio Inquiry from ${formData.name}`);

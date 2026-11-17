@@ -7,10 +7,21 @@ interface DeviceMockupProps {
 }
 
 export const DeviceMockup: React.FC<DeviceMockupProps> = ({ project }) => {
+  if (project.previewType === 'repository') {
+    return (
+      <div className="w-full rounded-2xl border border-white/20 bg-zinc-900 p-6 sm:p-8 text-white">
+        <span className="text-xs font-mono text-zinc-400">workofcharan /</span>
+        <h4 className="mt-3 text-2xl font-display font-semibold break-words">{project.title}</h4>
+        <p className="mt-4 text-sm text-zinc-400 leading-relaxed">{project.description}</p>
+        <div className="mt-5 flex flex-wrap gap-2">{project.techStack.map(tech => <span key={tech} className="rounded-full border border-white/15 px-3 py-1 text-xs">{tech}</span>)}</div>
+        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">Explore repository <ExternalLink size={14} /></a>
+      </div>
+    );
+  }
   if (project.previewType === 'mobile') {
     // iPhone / Mobile Frame in Black & White
     return (
-      <div className="relative w-full max-w-[280px] sm:max-w-[310px] mx-auto aspect-[9/18] rounded-[42px] bg-black p-3 shadow-[0_25px_60px_rgba(0,0,0,0.9)] border-[4px] border-zinc-700 overflow-hidden">
+      <div className="relative w-full max-w-[280px] sm:max-w-[310px] mx-auto aspect-[9/18] rounded-[42px] bg-black p-3 shadow-[0_25px_60px_rgba(0, 0, 0,0.9)] border-[4px] border-zinc-700 overflow-hidden">
         {/* Dynamic Island */}
         <div className="absolute top-4 left-1/2 -translate-x-1/2 w-24 h-6 rounded-full bg-black z-30 flex items-center justify-between px-3 border border-white/10">
           <div className="w-2.5 h-2.5 rounded-full bg-zinc-900 border border-zinc-800" />
@@ -111,7 +122,7 @@ export const DeviceMockup: React.FC<DeviceMockupProps> = ({ project }) => {
 
   // Desktop / Dashboard Browser Mockup in Black & White
   return (
-    <div className="w-full rounded-2xl bg-black p-2 sm:p-3 shadow-[0_25px_60px_rgba(0,0,0,0.9)] border border-white/15 overflow-hidden">
+    <div className="w-full rounded-2xl bg-black p-2 sm:p-3 shadow-[0_25px_60px_rgba(0, 0, 0,0.9)] border border-white/15 overflow-hidden">
       
       {/* Browser chrome header with macOS-style window dots */}
       <div className="flex items-center justify-between px-3 py-2 border-b border-white/10 bg-zinc-950 rounded-t-xl text-xs font-mono text-zinc-400">

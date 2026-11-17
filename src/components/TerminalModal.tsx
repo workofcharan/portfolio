@@ -134,7 +134,7 @@ export const TerminalModal: React.FC<TerminalModalProps> = ({ isOpen, onClose })
       case 'projects':
         resultNode = (
           <div className="space-y-3 font-mono text-xs sm:text-sm">
-            <div className="text-white font-bold mb-1">VERIFIED PRODUCTION PROJECTS & DEPLOYMENTS:</div>
+            <div className="text-white font-bold mb-1">PUBLIC GITHUB REPOSITORIES & SELECTED PROJECTS:</div>
             {PROJECTS.map((p, idx) => (
               <div key={p.id} className="p-2.5 rounded-lg bg-zinc-900/80 border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
@@ -260,7 +260,7 @@ export const TerminalModal: React.FC<TerminalModalProps> = ({ isOpen, onClose })
       case 'matrix':
         setIsMatrix((prev) => !prev);
         resultNode = (
-          <div className="font-mono text-xs sm:text-sm text-green-400">
+          <div className="font-mono text-xs sm:text-sm text-zinc-400">
             Matrix mode {isMatrix ? 'disabled (returned to luxury monochrome)' : 'enabled (wake up, Neo...)'}.
           </div>
         );
@@ -363,7 +363,7 @@ export const TerminalModal: React.FC<TerminalModalProps> = ({ isOpen, onClose })
             className={`relative w-full ${
               isMaximized ? 'h-[92vh] max-w-6xl' : 'max-h-[82vh] h-[650px] max-w-3xl'
             } rounded-2xl overflow-hidden border ${
-              isMatrix ? 'border-green-500/40 shadow-[0_0_50px_rgba(34,197,94,0.15)] bg-black' : 'border-white/20 shadow-[0_20px_70px_rgba(0,0,0,0.95)] bg-zinc-950'
+              isMatrix ? 'border-zinc-500/40 shadow-[0_0_50px_rgba(155, 155, 155,0.15)] bg-black' : 'border-white/20 shadow-[0_20px_70px_rgba(0, 0, 0,0.95)] bg-zinc-950'
             } flex flex-col z-10 transition-all duration-300`}
           >
             
@@ -422,7 +422,7 @@ export const TerminalModal: React.FC<TerminalModalProps> = ({ isOpen, onClose })
             <div
               onClick={() => inputRef.current?.focus()}
               className={`flex-1 p-4 sm:p-6 overflow-y-auto font-mono text-xs sm:text-sm space-y-4 cursor-text ${
-                isMatrix ? 'text-green-400 selection:bg-green-500 selection:text-black' : 'text-zinc-200 selection:bg-white selection:text-black'
+                isMatrix ? 'text-zinc-400 selection:bg-zinc-500 selection:text-black' : 'text-zinc-200 selection:bg-white selection:text-black'
               }`}
             >
               {/* Output log */}
@@ -448,7 +448,7 @@ export const TerminalModal: React.FC<TerminalModalProps> = ({ isOpen, onClose })
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   className={`flex-1 bg-transparent outline-none border-none p-0 font-mono text-xs sm:text-sm ${
-                    isMatrix ? 'text-green-400 caret-green-400' : 'text-white caret-white'
+                    isMatrix ? 'text-zinc-400 caret-zinc-400' : 'text-white caret-white'
                   }`}
                   placeholder="Type 'help'..."
                   autoFocus
